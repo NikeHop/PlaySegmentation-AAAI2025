@@ -1,0 +1,47 @@
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Testing
+.tox/
+.nox/
+.pytest_cache/
+
+# Django / Flask specific
+*.sqlite3
+instance/
+.env
+config.json
+
+# Coverage reports
+.coverage
+htmlcov/
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+
+# MyPy & Pylint
+.mypy_cache/
+.pylint.d/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Custom ignores
+*egg-info/
+__pycache__/
+*.err
+*.out
+wandb
+datasets
+model_store
+logs
+videos
+visualisations
+segmentations

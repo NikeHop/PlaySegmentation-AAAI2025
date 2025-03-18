@@ -1,0 +1,20 @@
+---
+device: cuda:0
+visualize: True
+n_visualizations: 5
+data:
+  env: babyai
+  env_name: go_to
+  debug: True
+  dataset_directory: "../../../datasets/babyai"
+  train_ratio: 0.8
+  batch_size: 256
+  num_workers: 5
+  filename: "babyai_go_to_10000_single"
+
+logging:
+  experiment_name: "labelling_model_babyai_confidence"
+  mode: online
+  project: play_segmentation
+  tags: ["ID3","BabyAI","Labelling Model","Confidence","Postprocessing"]
+  model_directory: ../../../../model_store

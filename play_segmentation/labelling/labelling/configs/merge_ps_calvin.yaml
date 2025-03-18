@@ -1,0 +1,10 @@
+---
+dataset_directory: ../../../datasets/calvin/task_D_D
+percent: 25
+threshold: 0.7
+
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Merge Labelled_Segmentation", "Calvin", "Play Segmentation"]
+  experiment_name: "merge_play_segmentation_calvin"

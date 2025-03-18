@@ -1,0 +1,29 @@
+---
+device: cuda:0
+
+# Directories
+dataset_directory: ../../../datasets/calvin/task_D_D
+model_directory: ../../../model_store
+visualisation_directory: ../../../visualisations/labelled_segmentation/calvin
+
+# Data
+debug: False
+env: calvin
+percent: 25
+
+
+# Algorithm Hyperparameters
+batch_size: 1
+min_window_size: 32
+max_window_size: 64
+threshold: 0.8
+
+# Hyperparameters
+n_visualisations: 20
+
+
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "Random", "CALVIN"]
+  experiment_name: "labelling_random_calvin"

@@ -1,0 +1,89 @@
+---
+algorithm: tridet
+seed: 42
+logging:
+  experiment_name: "tridet_calvin_training"
+  mode: online
+  project: play_segmentation
+  tags: ["Tridet","CALVIN","Training"]
+  model_directory: ../../model_store
+
+data:
+  env: "calvin"
+  buffer: 10
+  debug: False
+  dataset_directory: "../../datasets/calvin/task_D_D"
+  batch_size: 6
+  num_workers: 5
+  episode_filename: "auto_lang_ann_25.npy"
+  window_size: 128
+
+
+trainer:
+  lr: 0.00005
+  gamma: 2
+
+  model:
+    use_i3d_features: True
+    input_dim: 2048
+    max_seq_len: 128
+    max_buffer_len_factor: 6.0
+    num_bins: 40
+    num_classes: 34
+    iou_weight_power: 0.2
+    regression_range:  [[0, 4], [4, 8], [8,16], [16, 32], [32,64], [64,10000]]
+    preprocessor:
+      input_noise: 0.0005
+    backbone:
+      arch: [2,2,5]
+      scale_factor: 2
+      n_sgp_win_size: 15
+      embd_kernel_size: 3
+      use_abs_pe: True
+      init_conv_vars: 0
+      k: 1.5
+      downsample_type: "max"
+      fpn_with_ln: True
+      mlp_dim: 768
+      fpn_dim: 512
+      emb_with_ln: True
+      embd_dim: 512
+    head:
+      with_ln: True
+      boundary_kernel_size: 3
+      kernel_size: 3
+      num_layers: 3
+      dim: 512
+    train_cfg:
+      droppath: 0.1
+      cls_prior_prob: 0.01
+      head_empty_cls: []
+      init_loss_norm: 2000
+      center_sample: "radius"
+      center_sample_radius: 1.5
+      loss_weight: 1.0
+      dropout: 0.0
+      label_smoothing: 0.0
+    test_cfg:
+      pre_nms_thresh: 0.001
+      pre_nms_topk: 1
+      iou_threshold: 0.1
+      min_score: 0.01
+      max_seg_num: 1000
+      nms_method: 'soft'
+      duration_thresh: 0.05
+      multiclass_nms: True
+      nms_sigma: 0.5
+      voting_thresh: 0.75
+
+  load:
+    load: False
+
+
+training:
+  distributed: True
+  epochs: 40
+  gpus: [0,1,2,3]
+  accelerator: "gpu"
+  strategy: 'ddp_find_unused_parameters_true'
+  evaluation_frequency: 1

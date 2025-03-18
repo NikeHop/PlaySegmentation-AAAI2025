@@ -1,0 +1,23 @@
+---
+device: "cuda:0"
+
+# Directories
+vis_directory: "../../../visualisations/labelled_segmentation/calvin"
+model_directory: "../../../model_store"
+dataset_directory: "../../../datasets/calvin/task_D_D"
+
+# Data
+debug: False
+env: calvin
+percent: 25
+
+# Hyperparameters
+n_visualisations: 20
+min_window_size: 20
+window_size: 100
+
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "Calvin", "UnLoc"]
+  experiment_name: "labelling_unloc_calvin"

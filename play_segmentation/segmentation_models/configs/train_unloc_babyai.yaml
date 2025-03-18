@@ -1,0 +1,58 @@
+---
+algorithm: unloc
+seed: 1
+
+logging:
+  experiment_name: "unloc_babyai_training"
+  mode: online
+  project: play_segmentation
+  tags: ["UnLoc","BabyAI","Training"]
+  model_directory: ../../model_store
+
+data:
+  dataset: "babyai"
+  dataset_file: babyai_go_to_10000_unsegmented
+  dataset_directory: "../../datasets/babyai"
+  debug: False
+  device: cuda:0
+  env_name: go_to
+  batch_size: 128
+  num_workers: 5
+  max_step: 5
+  vlm: RN50
+  window_size: 25
+  train_ratio: 0.8
+
+trainer:
+  lr: 0.00005
+  gamma: 2
+
+  model:
+    task: "action_segmentation"
+    transformer:
+      context_length: 84
+      use_positional_encodings: False
+      num_layers: 2
+      n_head: 4
+      input_dim: 1024
+      hidden_dim: 512
+      dropout: 0.2
+    temporal_convolution:
+      kernel_sizes: [6,3,3]
+    head:
+      n_layers: 2
+      kernel_size: 4
+
+  load:
+    load: False
+    checkpoint: ""
+    experiment_name: ""
+    data_parallel: True # Was data parallel used during training
+
+training:
+  distributed: True
+  epochs: 500
+  gpus: [0]
+  accelerator: "gpu"
+  strategy: 'ddp_find_unused_parameters_true'
+  evaluation_frequency: 1

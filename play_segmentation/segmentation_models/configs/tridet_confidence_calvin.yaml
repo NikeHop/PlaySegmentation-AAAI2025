@@ -1,0 +1,18 @@
+---
+thresholds: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+logging:
+  experiment_name: "tridet_calvin_accuracy_confidence"
+  mode: online
+  project: play_segmentation
+  tags: ["Tridet","CALVIN","Accuracy_Confidence"]
+  model_directory: ../../model_store
+
+data:
+  env: "calvin"
+  buffer: 10
+  debug: False
+  dataset_directory: "../../datasets/calvin/task_D_D"
+  batch_size: 6
+  num_workers: 5
+  episode_filename: "auto_lang_ann_25.npy"
+  window_size: 128

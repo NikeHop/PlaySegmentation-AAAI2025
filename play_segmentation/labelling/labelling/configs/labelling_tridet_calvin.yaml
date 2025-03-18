@@ -1,0 +1,24 @@
+---
+device: "cuda:0"
+
+# Directories
+vis_directory: "../../../visualisations/labelled_segmentation/calvin"
+model_directory: "../../../model_store"
+dataset_directory: "../../../datasets/calvin/task_D_D"
+
+# Data
+debug: False
+env: "calvin"
+percent: 25
+
+# Hyperparameters
+min_window_size: 20
+max_window_size: 128
+n_visualisations: 20
+threshold: 0.6
+
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "BabyAI", "TriDet"]
+  experiment_name: "labelling_tridet_calvin"

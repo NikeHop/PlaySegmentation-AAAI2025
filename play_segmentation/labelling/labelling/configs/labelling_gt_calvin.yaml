@@ -1,0 +1,24 @@
+---
+device: cuda:0
+
+# Directories
+dataset_directory: ../../../datasets/calvin/task_D_D
+model_directory: ../../../model_store
+visualisation_directory: ../../../visualisations/labelled_segmentation/calvin
+
+# Data
+debug: False
+env: calvin
+percent: 25
+
+# Algorithm Hyperparameters
+batch_size: 1
+threshold: 0.8
+n_visualisations: 20
+
+# Logging Info
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "GT", "CALVIN"]
+  experiment_name: "labelling_gt_calvin"

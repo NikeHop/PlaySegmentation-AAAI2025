@@ -1,0 +1,26 @@
+---
+device: cuda:0
+
+# Directories
+dataset_directory: ../../../datasets/babyai
+model_directory: ../../../model_store
+visualisation_directory: ../../../visualisations/labelled_segmentation/babyai
+
+# Data
+env: babyai
+env_name: "go_to"
+dataset_file: "babyai_go_to_100000_unsegmented_training.pkl"
+labelled_dataset_file: "babyai_go_to_10000_single_training.pkl"
+
+# Algorithm Hyperparameters
+batch_size: 128
+max_window: 22
+n_visualisations: 20
+augmentation_factor: 10
+
+# Logging Info
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "GT", "BabyAI"]
+  experiment_name: "labelling_gt_babyai"

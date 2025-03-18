@@ -1,0 +1,41 @@
+---
+device: "cuda:0"
+debug: False
+
+# Directories
+vis_directory: "../../../visualisations/labelled_segmentation/babyai"
+model_directory: "../../../model_store"
+segmentation_directory: "../../../segmentations/babyai"
+dataset_directory: "../../../datasets/babyai"
+
+# Data
+env: "babyai"
+env_name: "go_to"
+batch_size: 100
+dataset_file: "babyai_go_to_100000_unsegmented_training.pkl"
+labelled_dataset_file: "babyai_go_to_10000_single_training.pkl"
+n_visualisations: 20
+visualize: True
+log_accuracy: True
+
+# Hyperparameters
+max_window_size: 100
+num_classes: 36
+check_last_valid_segment: False
+
+segmentation:
+  last_timestep: "end"
+  architecture: "convolution"
+  w_min: 1
+  w_max: 25
+
+instruction_embeddings:
+    type: t5
+    model: "google-t5/t5-small"
+
+# Logging
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelling", "PlaySegmentation","BabyAI"]
+  experiment_name: "labelling_ps_babyai"

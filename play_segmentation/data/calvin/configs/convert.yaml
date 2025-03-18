@@ -1,0 +1,6 @@
+---
+dataset_directory: "../../../datasets/calvin"
+model_store: "../../../model_store/clip"
+vlm: "RN50"
+device: "cuda:0"
+batch_size: 2048

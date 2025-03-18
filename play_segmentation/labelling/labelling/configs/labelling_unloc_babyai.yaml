@@ -1,0 +1,26 @@
+---
+device: "cuda:0"
+
+# Directories
+vis_directory: "../../../visualisations/labelled_segmentation/babyai"
+model_directory: "../../../model_store"
+dataset_directory: "../../../datasets/babyai"
+
+# Data
+env: "babyai"
+env_name: "go_to"
+dataset_file: "babyai_go_to_100000_unsegmented_training.pkl"
+labelled_dataset_file: "babyai_go_to_10000_single_training.pkl"
+vlm: RN50
+
+# Hyperparameters
+n_labelled_segments: 90000
+max_window_size: 25
+n_visualisations: 20
+
+
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelled_Segmentation", "BabyAI", "UnLoc"]
+  experiment_name: "labelling_unloc_babyai"

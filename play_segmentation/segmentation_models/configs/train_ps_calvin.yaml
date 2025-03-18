@@ -1,0 +1,55 @@
+---
+algorithm: play_segmentation
+seed: 1
+
+logging:
+  experiment_name: "play_segmentation_calvin_training"
+  mode: online
+  project: play_segmentation
+  tags: ["PlaySegmentation","CALVIN", "Training"]
+  model_directory: ../../model_store
+
+data:
+  env: calvin
+  debug: False
+  dataset_directory: "../../datasets/calvin/task_D_D"
+  buffer: 5
+  max_distance: 15
+  batch_size: 4
+  num_workers: 2
+  episode_filename: "auto_lang_ann_25.npy"
+
+trainer:
+  lr: 0.00005
+  model:
+    env: "calvin"
+    num_classes: 34
+    use_language: False
+    obs_dim: 2048
+    architecture: "convolution"
+    conv:
+      n_layers: 3
+      context_length: 20
+    transformer:
+      d_dim: 1024
+      n_head: 8
+      hidden_dim: 1024
+      num_layers: 1
+      dropout: 0
+      context_length: -1
+      use_positional_encoding: False
+    i3d:
+      use: True
+  load:
+    load: False
+    checkpoint: ""
+    experiment_name: ""
+    data_parallel: True # Was data parallel used during training
+
+training:
+  distributed: True
+  epochs: 125
+  gpus: [0,1,2,3]
+  accelerator: "gpu"
+  strategy: 'ddp_find_unused_parameters_true'
+  evaluation_frequency: 1

@@ -1,0 +1,39 @@
+---
+device: "cuda:0"
+debug: False
+
+
+# Directories
+vis_directory: "../../../visualisations/labelled_segmentation/calvin"
+model_directory: "../../../model_store"
+segmentation_directory: "../../../segmentations/calvin"
+dataset_directory: "../../../datasets/calvin/task_D_D"
+
+# Data
+env: "calvin"
+n_visualisations: 20
+
+# Hyperparameters
+batch_size: 18
+num_classes: 34
+check_last_valid_segment: True
+
+instruction_embeddings:
+    type: t5
+    model: "google-t5/t5-small"
+
+segmentation:
+  last_timestep: "end"
+  strategy: "dp"
+  architecture: "convolution"
+  w_min: 20
+  w_max: 100
+  segment_length: 64
+
+
+# Logging
+logging:
+  project: "play_segmentation"
+  mode: online
+  tags: ["Labelling", "PlaySegmentation","CALVIN"]
+  experiment_name: "labelling_ps_calvin"

@@ -1,0 +1,79 @@
+---
+device: 'cuda:0'
+seed: 4
+
+logging:
+  experiment_name: "mcil_calvin"
+  mode: online
+  project: play_segmentation
+  tags: ["MCIL","CALVIN","seed-1"]
+  model_directory: ../../model_store
+
+data:
+  dataset: mcil
+  dataset_directory: "../../datasets/calvin/task_D_D"
+  batch_size: 64
+  num_workers: 2
+  episode_filename: "auto_lang_ann.npy"
+  task_embeddings: False
+
+trainer:
+  lr: 0.00005
+  binary_weight: 1
+  beta: 0.001
+  std: 0.01
+  num_classes: 256
+  act_min_bound: [-0.432188, -0.545456, 0.293439, -3.141593, -0.811348, -3.141573, -1.0]
+  act_max_bound: [0.42977, 0.139396, 0.796262, 3.141592, 0.638583, 3.141551, 1.0]
+  log_scale_min: -7
+  n_dist: 10
+  model_directory: "../../model_store"
+
+  model:
+    action_dim: 7
+    latent_dim: 256
+    lang_dim: 384
+    obs_dim: 64
+    gripper_obs_dim: 32
+    n_dist: 10
+    segmentation: False
+    only_stop: False
+
+    encoder:
+      context_length: -1
+      use_positional_encodings: False
+      num_layers: 6
+      nhead: 8
+      input_dim: 1024
+      hidden_dim: 2048
+      dropout: 0
+    decoder:
+      context_length: 4
+      use_positional_encodings: False
+      num_layers: 6
+      nhead: 8
+      input_dim: 1024
+      hidden_dim: 2048
+      dropout: 0
+    prior:
+      num_layers: 3
+      hidden_dim: 2048
+      dropout: 0
+    goal_encoder:
+      input_dimension: 1024
+      hidden_dimension: 1024
+      output_dimension: 32
+      n_layers: 2
+
+  load:
+    load: False
+    checkpoint: ""
+    experiment_name: ""
+    data_parallel: True # Was data parallel used during training
+
+training:
+  distributed: True
+  epochs: 5
+  accelerator: gpu
+  gpus: [0]
+  strategy: 'ddp_find_unused_parameters_true'

@@ -1,0 +1,19 @@
+---
+device: cuda:0
+visualize: True
+n_visualizations: 5
+data:
+  env: calvin
+  dataset_directory: "../../../datasets/calvin/task_D_D"
+  labelled_data: "auto_lang_ann.npy"
+  num_workers: 5
+  batch_size: 6
+  segmentation: false
+  task_embeddings: false
+
+logging:
+  experiment_name: "labelling_model_calvin_confidence"
+  mode: online
+  project: play_segmentation
+  tags: ["ID3","CALVIN","Labelling Model","Confidence","Postprocessing"]
+  model_directory: ../../../../model_store

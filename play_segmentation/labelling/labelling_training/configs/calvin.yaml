@@ -1,0 +1,51 @@
+---
+algorithm: i3d
+
+logging:
+  experiment_name: "labelling_model_calvin"
+  mode: online
+  project: play_segmentation
+  tags: ["ID3","CALVIN","Labelling Model"]
+  model_directory: ../../../../model_store
+
+data:
+  env: calvin
+  dataset_directory: "../../../datasets/calvin/task_D_D"
+  labelled_data: "auto_lang_ann_25.npy"
+  num_workers: 5
+  batch_size: 6
+  segmentation: false
+  task_embeddings: false
+
+trainer:
+  lr: 0.00005
+  gamma: 2
+
+  model:
+    temp_kernels: [[5],[3],[3,1],[3,1],[1,3]]
+    num_blocks: [3, 4, 6, 3]
+    num_blocks_temporal_kernel: [3, 4, 6, 3]
+    channels: [64,256,512,1024,2048]
+    input_channel: 3
+    inner_channels: 64
+    spatial_strides: [1, 2, 2, 2]
+    spatial_dilations: [1, 1, 1, 1]
+    nonlocal:
+      location: [[],[],[],[]]
+    num_classes: 34
+    dropout: 0.5
+
+  load:
+    load: False
+    checkpoint: ""
+    experiment_name: ""
+    data_parallel: True # Was data parallel used during training
+
+training:
+  distributed: True
+  epochs: 150
+  gpus: [0,1,2,3]
+  accelerator: "gpu"
+  strategy: 'ddp'
+  precision: 32
+  accumulate_grad_batches: 1
