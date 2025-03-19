@@ -20,8 +20,7 @@ bash ./scripts/download.sh
 This code will:
 
 - Create the dataset splits (10%,25%,50%).
-- Embed the observations and instructions via CLIP (for UnLOC method).
-
+- Embed the observations and instructions via CLIP (for UnLoc method).
 
 
 ```

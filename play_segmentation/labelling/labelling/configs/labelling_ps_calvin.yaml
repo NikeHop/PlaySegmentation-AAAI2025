@@ -28,7 +28,7 @@ segmentation:
   architecture: "convolution"
   w_min: 20
   w_max: 100
-  segment_length: 64
+  segment_length: 300
 
 
 # Logging
