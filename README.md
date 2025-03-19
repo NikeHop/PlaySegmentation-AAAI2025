@@ -2,7 +2,7 @@
 
 Codebase for the AAAI-2025 paper ["Data Augmentation for Instruction Following Policies via Trajectory Segmentation"](https://arxiv.org/abs/2503.01871)
 
-(Project Page)[https://nikehop.github.io/play_segmentation/]
+[Project Page](https://nikehop.github.io/play_segmentation/)
 
 ## Prerequisites
 
