@@ -67,3 +67,16 @@ To train an imitation learning policy for BabyAI and a policy via MCIL for CALVI
 - [BabyAI](https://github.com/mila-iqia/babyai), BSD 3-Clause License
 - [CALVIN](https://github.com/mees/calvin), MIT license
 - [TriDet](https://github.com/dingfengshi/TriDet), MIT license
+
+## Citation 
+
+If you use this Codebase, please cite:
+
+```
+@article{hopner2025data,
+  title={Data Augmentation for Instruction Following Policies via Trajectory Segmentation},
+  author={H{\"o}pner, Niklas and Tiddi, Ilaria and van Hoof, Herke},
+  journal={arXiv preprint arXiv:2503.01871},
+  year={2025}
+}
+```
